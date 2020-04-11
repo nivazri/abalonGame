@@ -138,26 +138,12 @@ public class Main {
 	    			// in case the move was illegal
 	    			System.out.println(e.getMessage());
 	    		}
-
-	            JSONArray ja = new JSONArray();
-	            Player[][] playerMatrix = ab.boardDescription();
-	            for (int i=0; i<playerMatrix.length; i++) {
-	            	for(int j=0; j<playerMatrix[i].length; j++) {
-			            JSONObject pointJo = new JSONObject();
-			            pointJo.put("row", i);
-			            pointJo.put("column", j);
-			            pointJo.put("soldier", playerMatrix[i][j]);
-			            ja.add(pointJo);
-	            	}
-	            }
-	            
-	        	res.type("application/json");	            
-	        	return ja.toString();
+	    		
+	        	res.type("application/json");
+	    		return serverUtils.getBoard(ab);
 	        });
 	        
 	        post("/ai", (req, res) -> {
-	        	res.type("application/json");
-	        	
 	        	AbalonBoardGame _ab = new AbalonBoardGame(9, 5);
 	        	GameBoardAI<Board<AbalonBoardDataStructure, AbalonSoldier[][]>> _ai=new GameBoardAI<Board<AbalonBoardDataStructure, AbalonSoldier[][]>>();
 				_ai.setLevel(3);
@@ -165,8 +151,10 @@ public class Main {
 						_ab.getBoard().getNextStates(_ab.getTurn());
 				AbalonBoard aiMove=(AbalonBoard) _ai.findBestMove(nextStates, _ab.getTurn());
 				
+	        	res.type("application/json");
+	    		//return serverUtils.getBoard(_ab);
 	        	return "hi";
-	        });
+	    	});
     	});
     }
 }
