@@ -42,11 +42,13 @@ public class serverUtils {
         Player[][] playerMatrix = ab.boardDescription();
         for (int i=0; i<playerMatrix.length; i++) {
         	for(int j=0; j<playerMatrix[i].length; j++) {
-	            JSONObject pointJo = new JSONObject();
-	            pointJo.put("row", i);
-	            pointJo.put("column", j);
-	            pointJo.put("soldier", playerMatrix[i][j]);
-	            ja.add(pointJo);
+        		if (playerMatrix[i][j] != null) {        			
+        			JSONObject pointJo = new JSONObject();
+        			pointJo.put("row", i);
+        			pointJo.put("column", j);
+        			pointJo.put("soldier", playerMatrix[i][j].name());
+        			ja.add(pointJo);
+        		}
         	}
         }
         	            
