@@ -144,16 +144,21 @@ public class Main {
 	        });
 	        
 	        post("/ai", (req, res) -> {
-	        	AbalonBoardGame _ab = new AbalonBoardGame(9, 5);
+	            Object obj = new JSONParser().parse(req.body()); 	            
+	            JSONObject jo = (JSONObject) obj; 
+	            AbalonBoardDataStructure ds = new AbalonBoardDataStructure(9, 5);
+	            serverUtils.setBoard(ds, jo);
+	            AbalonBoard ab = new AbalonBoard(ds);
+	            Player currentTurn = serverUtils.parsePlayer((String) jo.get("currentTurn"));
+
 	        	GameBoardAI<Board<AbalonBoardDataStructure, AbalonSoldier[][]>> _ai=new GameBoardAI<Board<AbalonBoardDataStructure, AbalonSoldier[][]>>();
 				_ai.setLevel(3);
-				Collection<Board<AbalonBoardDataStructure, AbalonSoldier[][]>> nextStates=
-						_ab.getBoard().getNextStates(_ab.getTurn());
-				AbalonBoard aiMove=(AbalonBoard) _ai.findBestMove(nextStates, _ab.getTurn());
+				Collection<Board<AbalonBoardDataStructure, AbalonSoldier[][]>> nextStates= ab.getNextStates(currentTurn);
+				AbalonBoard aiMove=(AbalonBoard) _ai.findBestMove(nextStates, currentTurn);
+				ab.setBoardContent(aiMove);
 				
 	        	res.type("application/json");
-	    		//return serverUtils.getBoard(_ab);
-	        	return "hi";
+	    		return serverUtils.getBoard(ab);
 	    	});
     	});
     }
