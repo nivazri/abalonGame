@@ -138,16 +138,12 @@ public class Main {
 	    			// in case the move was illegal
 	    			System.out.println(e.getMessage());
 	    		}
-
+	    		
 	        	res.type("application/json");
-	        	
-	        	// TODO: return new board 
-	        	return "hi";
+	    		return serverUtils.getBoard(ab);
 	        });
 	        
 	        post("/ai", (req, res) -> {
-	        	res.type("application/json");
-	        	
 	        	AbalonBoardGame _ab = new AbalonBoardGame(9, 5);
 	        	GameBoardAI<Board<AbalonBoardDataStructure, AbalonSoldier[][]>> _ai=new GameBoardAI<Board<AbalonBoardDataStructure, AbalonSoldier[][]>>();
 				_ai.setLevel(3);
@@ -155,8 +151,10 @@ public class Main {
 						_ab.getBoard().getNextStates(_ab.getTurn());
 				AbalonBoard aiMove=(AbalonBoard) _ai.findBestMove(nextStates, _ab.getTurn());
 				
+	        	res.type("application/json");
+	    		//return serverUtils.getBoard(_ab);
 	        	return "hi";
-	        });
+	    	});
     	});
     }
 }

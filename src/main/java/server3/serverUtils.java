@@ -5,6 +5,7 @@ import java.awt.Point;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import abalonBoardGame.AbalonBoard;
 import abalonBoardGame.AbalonBoardDataStructure;
 import enums.Player;
 
@@ -36,4 +37,19 @@ public class serverUtils {
         return new Point(currentPosCol, currentPosRow);
 	}
 	
+	public static String getBoard(AbalonBoard ab) {
+        JSONArray ja = new JSONArray();
+        Player[][] playerMatrix = ab.boardDescription();
+        for (int i=0; i<playerMatrix.length; i++) {
+        	for(int j=0; j<playerMatrix[i].length; j++) {
+	            JSONObject pointJo = new JSONObject();
+	            pointJo.put("row", i);
+	            pointJo.put("column", j);
+	            pointJo.put("soldier", playerMatrix[i][j]);
+	            ja.add(pointJo);
+        	}
+        }
+        	            
+    	return ja.toString();
+	}
 }
