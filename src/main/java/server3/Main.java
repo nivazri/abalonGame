@@ -155,10 +155,9 @@ public class Main {
 				_ai.setLevel(3);
 				Collection<Board<AbalonBoardDataStructure, AbalonSoldier[][]>> nextStates= ab.getNextStates(currentTurn);
 				AbalonBoard aiMove=(AbalonBoard) _ai.findBestMove(nextStates, currentTurn);
-				ab.setBoardContent(aiMove);
 				
 	        	res.type("application/json");
-	    		return serverUtils.getBoard(ab);
+	    		return serverUtils.getBoard(aiMove);
 	    	});
     	});
     }
