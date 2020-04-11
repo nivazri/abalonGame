@@ -108,7 +108,12 @@ public class Main {
 	            AbalonBoard ab = new AbalonBoard(ds);
 	            
 	            Player winner = ab.getWinner();
-	            return winner;
+	            
+	            if (winner != null) {
+	            	return winner.name();
+	            }
+	            
+	            return "NONE";
 	        });
 	        
 	        post("/nextPlayerMove", (req, res) -> {

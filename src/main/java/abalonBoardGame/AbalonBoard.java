@@ -54,6 +54,42 @@ public class AbalonBoard extends
 		_numOfRows = ds.get_size();
 		_numOfColsInFirstRow = ds.get_numOfColsInFirstRow();
 		_dataStructure = ds;
+
+		// Update the soldiers count in the board
+		int colsInRow = _numOfColsInFirstRow;
+		int rows = _numOfRows / 2;
+		Point pos;
+		
+		// all the rows except the middle row
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < colsInRow; j++) {
+				pos = new Point(j, i);
+				if (ds.getSquareContent(pos) == Player.BLACK) {
+					ds.set_numOfBlacks(ds.get_numOfBlacks() + 1);
+				} else if (ds.getSquareContent(pos) == Player.WHITE) {
+					ds.set_numOfWhites(ds.get_numOfWhites() + 1);
+				}
+				
+				pos = new Point(j, _numOfRows - 1 - i);
+				if (ds.getSquareContent(pos) == Player.BLACK) {
+					ds.set_numOfBlacks(ds.get_numOfBlacks() + 1);
+				} else if (ds.getSquareContent(pos) == Player.WHITE) {
+					ds.set_numOfWhites(ds.get_numOfWhites() + 1);
+				}
+				
+			}
+			colsInRow++;
+		}
+		// middle row
+		for (int i = 0; i < colsInRow; i++) {
+			pos = new Point(i, _numOfRows / 2);
+			
+			if (ds.getSquareContent(pos) == Player.BLACK) {
+				ds.set_numOfBlacks(ds.get_numOfBlacks() + 1);
+			} else if (ds.getSquareContent(pos) == Player.WHITE) {
+				ds.set_numOfWhites(ds.get_numOfWhites() + 1);
+			}
+		}
 	}
 
 	/**
