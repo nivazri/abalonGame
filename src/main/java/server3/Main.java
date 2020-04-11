@@ -139,10 +139,20 @@ public class Main {
 	    			System.out.println(e.getMessage());
 	    		}
 
-	        	res.type("application/json");
-	        	
-	        	// TODO: return new board 
-	        	return "hi";
+	            JSONArray ja = new JSONArray();
+	            Player[][] playerMatrix = ab.boardDescription();
+	            for (int i=0; i<playerMatrix.length; i++) {
+	            	for(int j=0; j<playerMatrix[i].length; j++) {
+			            JSONObject pointJo = new JSONObject();
+			            pointJo.put("row", i);
+			            pointJo.put("column", j);
+			            pointJo.put("soldier", playerMatrix[i][j]);
+			            ja.add(pointJo);
+	            	}
+	            }
+	            
+	        	res.type("application/json");	            
+	        	return ja.toString();
 	        });
 	        
 	        post("/ai", (req, res) -> {
