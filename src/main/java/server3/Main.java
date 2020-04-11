@@ -86,8 +86,8 @@ public class Main {
 			            ab.validateMove(currentPos, point, currentTurn);
 
 			            JSONObject possibleMovesJo = new JSONObject();
-			            possibleMovesJo.put("row", point.x);
-			            possibleMovesJo.put("column", point.y);
+			            possibleMovesJo.put("column", point.x);
+			            possibleMovesJo.put("row", point.y);
 			            ja.add(possibleMovesJo);
 		            } catch (Exception e) {
 		            	System.out.println(e.getMessage());
