@@ -25,7 +25,7 @@ public class serverUtils {
             JSONObject arrObj = (JSONObject) boardState.get(i);
 			int row = ((Long) arrObj.get("row")).intValue();
 			int col = ((Long) arrObj.get("column")).intValue();
-			Player solider = serverUtils.parsePlayer((String) arrObj.get("solider"));
+			Player solider = serverUtils.parsePlayer((String) arrObj.get("soldier"));
 			ds.setSquareContent(new Point(col, row), solider);
         }
 	}
