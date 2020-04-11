@@ -157,7 +157,7 @@ public class Main {
 	            Player currentTurn = serverUtils.parsePlayer((String) jo.get("currentTurn"));
 
 	        	GameBoardAI<Board<AbalonBoardDataStructure, AbalonSoldier[][]>> _ai=new GameBoardAI<Board<AbalonBoardDataStructure, AbalonSoldier[][]>>();
-				_ai.setLevel(2);
+				_ai.setLevel(3);
 				Collection<Board<AbalonBoardDataStructure, AbalonSoldier[][]>> nextStates= ab.getNextStates(currentTurn);
 				AbalonBoard aiMove=(AbalonBoard) _ai.findBestMove(nextStates, currentTurn);
 				
