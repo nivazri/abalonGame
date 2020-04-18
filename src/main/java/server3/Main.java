@@ -68,7 +68,7 @@ public class Main {
 	    		return "Service is up and running";
 	    	});
 			
-	        post("/possibleMoves", (req, res) -> {
+	        post("/abalongame/moves/all", (req, res) -> {
 	            Object obj = new JSONParser().parse(req.body());
 	            JSONObject jo = (JSONObject) obj;
 	            AbalonBoardDataStructure ds = new AbalonBoardDataStructure(9, 5);
@@ -99,7 +99,7 @@ public class Main {
 	        	return ja.toString();
 	        });
 	        
-	        post("/winner", (req, res) -> {
+	        post("/abalongame/rules/winner", (req, res) -> {
 	            Object obj = new JSONParser().parse(req.body());
 	            JSONObject jo = (JSONObject) obj;
 	            
@@ -116,7 +116,7 @@ public class Main {
 	            return "NONE";
 	        });
 	        
-	        post("/nextPlayerMove", (req, res) -> {
+	        post("/abalongame/moves/execute", (req, res) -> {
 	            Object obj = new JSONParser().parse(req.body()); 	            
 	            JSONObject jo = (JSONObject) obj; 
 	            AbalonBoardDataStructure ds = new AbalonBoardDataStructure(9, 5);
@@ -148,7 +148,7 @@ public class Main {
 	    		return serverUtils.getBoard(ab);
 	        });
 	        
-	        post("/ai", (req, res) -> {
+	        post("/abalongame/moves/ai", (req, res) -> {
 	            Object obj = new JSONParser().parse(req.body()); 	            
 	            JSONObject jo = (JSONObject) obj; 
 	            AbalonBoardDataStructure ds = new AbalonBoardDataStructure(9, 5);
