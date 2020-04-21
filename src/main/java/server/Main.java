@@ -1,4 +1,4 @@
-package server3;
+package server;
 
 import static spark.Spark.*;
 
@@ -23,44 +23,9 @@ import java.util.Vector;
 
 public class Main {
     public static void main(String[] args) {
-    	// CRUD get post put delete
-    	
-    	// JSON - get and post, accepts json body, and returns json as a result
-    	
-    	// Abalon with requests
-    	
-    	// serving static assets, entire folder
-    	
-    	// url of web app ui: "/"
-    	
-    	// rest of api will have "/api" prefix
-    	// CORS?
-    	// enable CORS in spark java
-    	// https://gist.github.com/saeidzebardast/e375b7d17be3e0f4dddf
-    	
-    	// api for abalon game
-    	
-    	// accept json: boardState, currentPlayerTurn
-    	// post "/api/" accpet boardState, currentPlayerTurn, position
-    		//, returns list of possible moves (list of positions) 
-    	
-    	// post "/api/" boardState, sourcePosition, destPosition, 
-    		// returns a new board state after this move (boardState)
-    	
-    	// post "/api/" accept boardState, currentPlayerTurn,
-    		// returns a new board state that selectes the move with the ai
-    	
-    	
-    	// Static files
-    	// for external directory outside of the project
-    	// access on http://localhost:12345/test.html
-//        staticFiles.externalLocation("C:\\Users\\niazriel\\Desktop\\UI"); 
-        
-        // for directory on the project
+		port(12345);
+		
         staticFiles.location("/public");
-        
-    	port(12345);
-    	
     	get("/", (q, a) -> IOUtils.toString(Spark.class.getResourceAsStream("/public/index.html")));
     	
 		path("/api", () -> {

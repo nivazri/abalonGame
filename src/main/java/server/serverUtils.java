@@ -1,4 +1,4 @@
-package server3;
+package server;
 
 import java.awt.Point;
 
