@@ -2,6 +2,9 @@ package server;
 
 import static spark.Spark.*;
 
+import db.AbalonController;
+import db.AbalonGame;
+import netscape.javascript.JSObject;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.*; 
@@ -19,7 +22,8 @@ import spark.utils.IOUtils;
 
 import java.awt.Point;
 import java.util.Collection;
-import java.util.Vector; 
+import java.util.Date;
+import java.util.Vector;
 
 public class Main {
     public static void main(String[] args) {
@@ -75,6 +79,8 @@ public class Main {
 	            Player winner = ab.getWinner();
 	            
 	            if (winner != null) {
+					AbalonController abc = new AbalonController();
+					abc.addNewGame(new AbalonGame(winner.name(), ab.toString(), new Date().getTime()));
 	            	return winner.name();
 	            }
 	            
@@ -115,7 +121,7 @@ public class Main {
 	        
 	        post("/abalongame/moves/ai", (req, res) -> {
 	            Object obj = new JSONParser().parse(req.body()); 	            
-	            JSONObject jo = (JSONObject) obj; 
+	            JSONObject jo = (JSONObject) obj;
 	            AbalonBoardDataStructure ds = new AbalonBoardDataStructure(9, 5);
 	            serverUtils.setBoard(ds, jo);
 	            AbalonBoard ab = new AbalonBoard(ds);
@@ -129,6 +135,22 @@ public class Main {
 	        	res.type("application/json");
 	    		return serverUtils.getBoard(aiMove);
 	    	});
+
+	        get("/abalongame/history", (req, res) -> {
+				JSONArray data = new JSONArray();
+	        	try {
+					AbalonController abc = new AbalonController();
+					for (AbalonGame game : abc.getAll()) {
+						data.add(game.toJSON());
+					}
+				} catch (Exception e) {
+	        		System.out.println(e.getMessage());
+				}
+
+				res.type("application/json");
+	        	return data;
+
+			});
     	});
     }
 }
