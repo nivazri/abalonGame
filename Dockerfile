@@ -8,11 +8,8 @@ RUN mvn verify
 
 ADD src /code/src
 
-RUN ls
-
 RUN mvn package
 
-RUN ls target
 RUN which java
 
 CMD ["java", "-jar", "target/abalon-game-server-jar-with-dependencies.jar"]
