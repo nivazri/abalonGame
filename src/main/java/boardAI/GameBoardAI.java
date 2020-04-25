@@ -301,19 +301,3 @@ public class GameBoardAI<T extends Board<?, ?>> implements BoardSolver<T> {
     }
 }
 
-/*
- * System.out.println("num of nodes before prune:"+numOfNodes(minMaxTree));
- * System.out.println("next states before algorithm:"); for (T t :
- * currentStates) { System.out.print(t.evaluate(currentTurn)+" "); }
- * System.out.println(); selectedState=minMaxAlgorithm(minMaxTree);
- * System.out.println("next states values:"); for (MinMaxTreeNode<T> node :
- * minMaxTree.getSons()) { System.out.print(node.getValue()+" "); }
- * System.out.println();
- * System.out.println("num of nodes after prune:"+numOfNodes(minMaxTree));
- *
- * System.out.println("leaves values:"); //printLeavesValues(minMaxTree);
- * System.out.println();
- *
- * System.out.println("minmax tree route:"); showRoute(minMaxTree);
- */
-
