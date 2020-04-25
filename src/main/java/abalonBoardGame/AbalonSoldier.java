@@ -4,8 +4,7 @@ import enums.Player;
 
 /**
  * a class that holds information on a specific abalon soldier
- * 
- * @author omer
+ *
  *
  */
 public class AbalonSoldier {
