@@ -12,10 +12,13 @@ public class AbalonGame {
 
     private long playTime;
 
-    public AbalonGame(String winner, String boardState, long playTime) {
+    private boolean isAI;
+
+    public AbalonGame(String winner, String boardState, long playTime, boolean isAI) {
         this.winner = winner;
         this.boardState = boardState;
         this.playTime = playTime;
+        this.isAI = isAI;
     }
 
     public String getWinner() {
@@ -48,7 +51,16 @@ public class AbalonGame {
         jo.put("play_time", playTime);
         jo.put("board_state", boardState);
         jo.put("winner", winner);
+        jo.put("is_ai", isAI);
 
         return jo;
+    }
+
+    public boolean isAI() {
+        return isAI;
+    }
+
+    public void setAI(boolean AI) {
+        isAI = AI;
     }
 }
