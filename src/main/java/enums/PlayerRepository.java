@@ -24,8 +24,6 @@ public class PlayerRepository implements PlayerContainer {
 
     /**
      * a private class that is in charge of the order of the turns
-     *
-     * @author omer
      */
     private class PlayerGenrator implements PlayerIterator {
         private int _index;
